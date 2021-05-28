@@ -13,7 +13,13 @@ class WPeople extends StatelessWidget{
     return Container(
         padding:  EdgeInsets.all(10),
         margin:  EdgeInsets.all(10),
-
+        child: Column(
+          children:<Widget> [
+            Text(people.nome),
+            Text(people.dataNascimento),
+            Text(people.sexo)
+          ],
+        ),
     ) ;
   }
 
