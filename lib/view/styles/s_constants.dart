@@ -10,7 +10,7 @@ class ColorsApp{
 }
 
 class DecorationConstants{
-  static final BoxDecoration textFieldDecoration = BoxDecoration(
+  static final BoxDecoration inputDecoration = BoxDecoration(
       boxShadow: [
         BoxShadow(
            color: Color(0xFFd3d3d3).withOpacity(0.5),
@@ -24,20 +24,25 @@ class DecorationConstants{
       color:  Colors.white,
   );
 
-  static final BoxDecoration buttonDecoration =  BoxDecoration(
-    boxShadow: [
-      BoxShadow(
-        color: Color(0xFFd3d3d3).withOpacity(0.5),
-        blurRadius: 4.0, // has the effect of softening the shadow
-        spreadRadius: 4.0, // has the effect of extending the shadow
 
-      )
-    ],
-    borderRadius: BorderRadius.all(
-        Radius.circular(10)
-    ),
-    color:  Colors.blue,
-  );
+   static BoxDecoration getbuttonDecoration(Color color){
+     final BoxDecoration buttonDecoration =  BoxDecoration(
+      boxShadow: [
+        BoxShadow(
+          color: Color(0xFFd3d3d3).withOpacity(0.5),
+          blurRadius: 4.0, // has the effect of softening the shadow
+          spreadRadius: 4.0, // has the effect of extending the shadow
+
+        )
+      ],
+      borderRadius: BorderRadius.all(
+          Radius.circular(10)
+      ),
+      color:  color,
+    );
+     return buttonDecoration;
+  }
+
 
 
   static final BoxDecoration decorationBackground = BoxDecoration(
