@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'view/screens/home_page/home_page.dart';
+import 'view/screens/home_page/s_home_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Ids',
       theme: ThemeData(
-        primarySwatch: Colors.black,
+        primarySwatch: Colors.blue,
       ),
       home: MyHomePage(),
     );
