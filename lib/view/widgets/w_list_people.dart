@@ -11,19 +11,11 @@ class WListPeople extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin:  EdgeInsets.all(15),
-        child: Flexible(
-           flex: 1,
-            child: ListView.builder(
-              physics: ClampingScrollPhysics(),
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-
-              itemBuilder: (_,int index)=>WPeople(people: peopleList[index]),
-              itemCount: peopleList.length,
-            )
-        )
+    return  ListView.builder(
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      itemBuilder: (_,int index)=>WPeople(people: peopleList[index]),
+      itemCount: peopleList.length,
     );
   }
 
