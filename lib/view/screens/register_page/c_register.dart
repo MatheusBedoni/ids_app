@@ -11,6 +11,7 @@ import 'package:toast/toast.dart';
 
 class IValidator{
   String validateName(String value) {}
+  bool validateDataNascimento(String value){}
 }
 
 
@@ -49,26 +50,41 @@ class RegisterController implements IValidator, IRegister{
   }
 
   @override
+  bool validateDataNascimento(String value) {
+    if(dataNascimento != 'dia / mês / ano'){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  @override
   Future<bool> save(BuildContext context) async {
     if (key.currentState.validate()) {
-      var listRead = await ReadData.getListMap('list');
-      var listSet = await SaveData.setListMap(new People(id:listRead.length+1, nome: ctrlName.text, sexo:sexoSelecionado, dataNascimento:  dataNascimento),listRead);
-      bool result = await SaveData.saveData(listSet, 'list');
+      if(validateDataNascimento(dataNascimento)){
+        var listRead = await ReadData.getListMap('list');
+        var listSet = await SaveData.setListMap(new People(id:listRead.length+1, nome: ctrlName.text, sexo:sexoSelecionado, dataNascimento:  dataNascimento),listRead);
+        bool result = await SaveData.saveData(listSet, 'list');
 
-      if(result == true){
-        Toast.show("Deu tudo certo :D", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+        if(result == true){
+          Toast.show("Deu tudo certo :D", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
 
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-              builder: (_) {
-                return MyHomePage() ;
-              }
-          ),
-        );
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+                builder: (_) {
+                  return MyHomePage() ;
+                }
+            ),
+          );
+        }else{
+          Toast.show("Que estranho, um problema aconteceu :<", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+
+        }
       }else{
-        Toast.show("Que estranho, um problema aconteceu :<", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+        Toast.show("Hey, você precisa adicionar tua data de nascimento :p", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
 
       }
+
 
 
       key.currentState.save();
